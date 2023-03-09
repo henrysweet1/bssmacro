@@ -907,9 +907,9 @@ fightcheck(){ ;checks if a vicious bee is present.
 		}
 		while(1){
 			walk(750,"f")
-			walk(750,"l")
-			walk(750,"b")
-			walk(750,"r")
+			walk(500,"l")
+			walk(500,"b")
+			walk(500,"r")
 			if (SearchFunction("deadvic.png",20)[1] = 0){
 				break
 			}
