@@ -155,7 +155,7 @@ loadmainui(){
 		previousy := 100
 	}
 	
-	Gui, SHow,x%previousx% y%previousy%, Syspalk's macro v1.0.5
+	Gui, SHow,x%previousx% y%previousy%, Syspalk's macro v1.0.3
 	Tooltip,
 	global guiloaded := true
 	
