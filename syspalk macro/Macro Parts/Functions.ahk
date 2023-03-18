@@ -906,10 +906,10 @@ fightcheck(){ ;checks if a vicious bee is present.
 			global vicfield := "false"
 		}
 		while(1){
-			walk(750,"f")
-			walk(750,"l")
-			walk(750,"b")
-			walk(750,"r")
+			walk(1000,"f")
+			walk(1000,"l")
+			walk(1000,"b")
+			walk(1000,"r")
 			if (SearchFunction("deadvic.png",20)[1] = 0){
 				break
 			}
