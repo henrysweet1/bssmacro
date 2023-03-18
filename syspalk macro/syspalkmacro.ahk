@@ -1,4 +1,6 @@
 ﻿;please don't steal my code
+Tooltip,Checking for updates...
+#include Macro Parts\Version checker.ahk
 Tooltip,Loading...
 #include Macro Parts\Data Handler.ahk
 #include Macro Parts\Functions.ahk
