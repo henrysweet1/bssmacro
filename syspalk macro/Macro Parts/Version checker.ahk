@@ -1,7 +1,7 @@
 ﻿global currentversion
 FileRead,currentversion,configs/version.txt
 whr := ComObjCreate("WinHttp.WinHttpRequest.5.1")
-whr.Open("GET", "https://raw.githubusercontent.com/Syspalkius/HotbarAutomator/main/Hotbar%20Automator/Hotbar%20Automator.ahk", true)
+whr.Open("GET", "https://raw.githubusercontent.com/Syspalkius/bssmacro/main/syspalk%20macro/configs/version.txt", true)
 whr.Send()
 whr.WaitForResponse()
 version := whr.ResponseText
