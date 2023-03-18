@@ -335,7 +335,9 @@ getdata(loadgui){
 		global doubleresetdata := "checked"
 	}
 	IniRead,planters,configs/previous.ini,settings,planters
-	global planters := "checked"
+	if (planters){
+		global planters := "checked"
+	}
 	IniRead,haststatus,configs/previous.ini,settings,hasty
 	IniRead,previousx,configs/previous.ini,gui,previousx
 	IniRead,previousy,configs/previous.ini,gui,previousy
