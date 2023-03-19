@@ -208,49 +208,44 @@
 	}
 }
 
-movetosat(var){ ;moves your character to the saturator.
-	WinGetPos , windowX, windowY, windowWidth, windowHeight, Roblox
-	winUp := windowHeight / 2.14
-	winDown := windowHeight / 1.88
-	winLeft := windowWidth / 2.14
-	winRight := windowWidth /1.88
-	If (SpecificPixelSearchFunction("0xFFD801",5,0,0,Winleft,A_ScreenHeight)[1] = 0){
+movetosat(var){
+	winUp := A_ScreenHeight / 2.1
+	winDown := A_ScreenHeight / 1.9
+	winLeft := A_ScreenWidth / 2.1
+	winRight := A_ScreenWidth /1.9
+	
+	if (SearchFunction("sprinkler.png",25)[2] < WinLeft && SearchFunction("sprinkler.png",25)[1] = 0){
 		walk(100,"l")
 		loop %var%{
-			If (SpecificPixelSearchFunction("0xFFD801",5,0,0,Winleft,A_ScreenHeight)[1] = 0){
+			if (SearchFunction("sprinkler.png",25)[2] < WinLeft && SearchFunction("sprinkler.png",25)[1] = 0){
 				walk(100,"l")
-			}else{
-				break
 			}
 		}
-	}else if (SpecificPixelSearchFunction("0xFFD801",5,A_ScreenWidth,0,WinRight,A_ScreenHeight)[1] = 0){
+	}else if (SearchFunction("sprinkler.png",25)[2] > WinRight && SearchFunction("sprinkler.png",25)[1] = 0){
 		walk(100,"r")
 		loop %var%{
-			if (SpecificPixelSearchFunction("0xFFD801",5,A_ScreenWidth,0,WinRight,A_ScreenHeight)[1] = 0){
+			if (SearchFunction("sprinkler.png",25)[2] > WinRight && SearchFunction("sprinkler.png",25)[1] = 0){
 				walk(100,"r")
-			}else{
-				break
-			}
-		}
-	}if (SpecificPixelSearchFunction("0xFFD801",5,0,0,A_ScreenWidth,WinUp)[1] = 0){
-		walk(100,"f")
-		loop %var%{
-			if (SpecificPixelSearchFunction("0xFFD801",5,0,0,A_ScreenWidth,WinUp)[1] = 0){
-				walk(100,"f")
-			}else{
-				break
-			}
-		}
-	}else if (SpecificPixelSearchFunction("0xFFD801",5,0,A_ScreenHeight,A_ScreenWidth,winDown)[1] = 0){
-		walk(100,"b")
-		loop %var%{
-			if (SpecificPixelSearchFunction("0xFFD801",5,0,A_ScreenHeight,A_ScreenWidth,winDown)[1] = 0){
-				walk(100,"b")
-			}else{
-				break
 			}
 		}
 	}
+	
+	if (SearchFunction("sprinkler.png",25)[3] < WinDown && SearchFunction("sprinkler.png",25)[1] = 0){
+		walk(100,"f")
+		loop %var%{
+			if (SearchFunction("sprinkler.png",25)[3] < WinDown && SearchFunction("sprinkler.png",25)[1] = 0){
+				walk(100,"f")
+			}
+		}
+	}else if (SearchFunction("sprinkler.png",25)[3] > WinUp && SearchFunction("sprinkler.png",25)[1] = 0){
+		walk(100,"b")
+		loop %var%{
+			if (SearchFunction("sprinkler.png",25)[3] > WinUp && SearchFunction("sprinkler.png",25)[1] = 0){
+				walk(100,"b")
+			}
+		}
+	}
+	
 }
 
 SendHotbar(var){ ;sends key to the hotbar.
@@ -776,15 +771,6 @@ checkbufftimer(){ ;checks the timers for the hotbar buffs.
 	}
 }
 
-SpecificPixelSearchFunction(color,variation,x1,y1,x2,y2){ ;pixelsearch in a function.
-	mousemove,A_ScreenWidth/2,A_ScreenHeight/2 ;move mouse to 0,0
-	PixelSearch, FoundX, FoundY,%x1%,%y1%,%x2%,%y2%,%color%, *%variation%,fast
-	if (errorlevel = 0){
-		return [ErrorLevel,FoundX,FoundY]
-		return
-	}
-}
-
 plantcycle(plant){ ;this thing took me way too long to make but ended up being pretty simple to do.
 	print := "Running plant " . plant
 	Eventlog(print)
@@ -963,7 +949,21 @@ PixelSearchFunction(color,variation){ ;pixelsearch in function so nicer to use.
 	mousemove,A_ScreenWidth/2,A_ScreenHeight/2 ;move mouse to 0,0
 	PixelSearch, FoundX, FoundY,0,0,A_ScreenWidth,A_ScreenHeight,%color%, *%variation%,fast
 	return [ErrorLevel,FoundX,FoundY]
-} 
+}
+
+SpecificPixelSearchFunction(color,variation,x1,y1,x2,y2){ ;pixelsearch in a function.
+	mousemove,A_ScreenWidth/2,A_ScreenHeight/2 ;move mouse to 0,0
+	PixelSearch, FoundX, FoundY,%x1%,%y1%,%x2%,%y2%,%color%, *%variation%,fast
+	if (errorlevel = 0){
+		return [ErrorLevel,FoundX,FoundY]
+	}
+}
+
+SpecificSearchFunction(image,variation,x1,y1,x2,y2){ ;pixelsearch in a function.
+	mousemove,A_ScreenWidth/2,A_ScreenHeight/2 ;move mouse to 0,0
+	ImageSearch, FoundX, FoundY,%x1%,%y1%,%x2%,%y2%, *%variation% Macro Parts\images\%image%
+	return [ErrorLevel,FoundX,FoundY]
+}
 
 r(var){ ;kills your character
 	SendInput {Escape}

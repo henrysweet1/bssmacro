@@ -130,7 +130,7 @@ pump(nectar){
 	camrotate(1,"r")
 	SendSpace()
 	sleep 2000
-	walk(500,"f")
+	walk(1000,"f")
 	if (nectar = true){
 		walk(4000,"f")
 		sleep 100
@@ -374,7 +374,7 @@ mush(nectar){
 		walk(100,"b")
 	}
 	else{
-		walk(1750,"f")
+		walk(2250,"f")
 		walk(500,"l")
 	}
 }
@@ -444,9 +444,8 @@ cactus(nectar){
 	}
 	else{
 		pump(false)
-		camrotate(2,"l")
-		walk(2250,"l")
-		walk(250,"b")
+		camrotate(2,"r")
+		walk(2500,"r")
 	}
 }
 
@@ -537,7 +536,7 @@ pep(nectar){
 	sleep 1200
 	camrotate(2,"l")
 	SendSpace()
-	sleep 600
+	sleep 1000
 	walkhold("r","Up")
 	if not (nectar){
 		walkhold("r","Up")

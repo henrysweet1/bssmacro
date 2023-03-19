@@ -61,7 +61,7 @@ bettertokenzigzag(variablename,var77){ ;this thing is the same as zigzag but bet
 		sidewayssizez := sidewayssize*0.36
 		forwardsize := variablename*1.1
 	}else{
-		sidewayssizez := sidewayssize
+		sidewayssizez := sidewayssize*0.8
 		forwardsize := variablename
 	}
 	loop 2{
