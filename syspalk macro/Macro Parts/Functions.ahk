@@ -526,7 +526,6 @@ ErrorLog(ErrorMessage){ ;same thing as eventlog but this time it logs errors in 
 		WebRequest.SetRequestHeader("Content-Type", "application/json")
 		WebRequest.Send(postdata) 
 	}
-	
 } 
 
 PlantAction(option,plantnr,lootiffull){ ;here is where the cool plantaction happends yes i know it sounds cooler than it actually is but look
@@ -601,6 +600,7 @@ Reset(){ ;this will make your character commit suicide and also has some crapy a
 				while (1){
 					sleep 1000
 					if (SearchFunction("e.png",40)[1] = 1){
+						global lastconv := A_TickCount
 						goto,exithmhmqdsf
 					}
 					if (A_TickCount - breaktimer > 300000){
@@ -667,6 +667,7 @@ Reset(){ ;this will make your character commit suicide and also has some crapy a
 				if (zzz = true){
 					sleep 5000
 				}
+				global lastconv := A_TickCount
 				break
 			}
 			zzz := true
@@ -1106,5 +1107,22 @@ checkplants(timestamp){
 			plantcycle(3)
 			safetycheck()
 		}
+	}
+}
+
+balloonwarning(){
+	try{
+		IniRead,url,configs/privlinks.ini,webhooks,balloon
+		time := (A_TickCount - lastconv)/60000
+		postdata=
+		(
+		{
+		"content": " @everyone LAST BALLOON CONVERSION WAS %time% MINUTES AGO"
+		}
+		)
+		WebRequest := ComObjCreate("WinHttp.WinHttpRequest.5.1")
+		WebRequest.Open("POST", url, false)
+		WebRequest.SetRequestHeader("Content-Type", "application/json")
+		WebRequest.Send(postdata) 
 	}
 }

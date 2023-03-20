@@ -219,11 +219,12 @@ global firstpinerun := true
 global save := true
 global rejoinclaim := true
 global allowrejoinconv := true
-global textcol := "cred"
 global openedfarmui := false
 global openedplantui := false
 global openedbeesmasui := false
 global keyboardtype 
+global hookballoon
+global lastconv := A_TickCount
 
 global tier := 1 ;give highest access
 
@@ -440,6 +441,7 @@ getdata(loadgui){
 	
 	IniRead,hookevent,configs/privlinks.ini,webhooks,events
 	IniRead,hookerror,configs/privlinks.ini,webhooks,errors
+	IniRead,hookballoon,configs/privlinks.ini,webhooks,balloon
 }
 
 savedata(){ ;this allows the macro to save data

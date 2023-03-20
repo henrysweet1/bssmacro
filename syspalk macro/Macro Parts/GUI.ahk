@@ -3,9 +3,10 @@
 loadmainui(){
 	global start := A_TickCount
 	Gui, Font, s10 bold
-	Gui,Color,Black
+	Gui,Color,black
+	global textcol := "cred"
 	
-	Gui, Add, Tab, x1 y1 w500 h250 cred ,Main|Plants|Buffs|Settings|advanced|stuff
+	Gui, Add, Tab, x1 y1 w500 h250 cred ,Main|Plants|Buffs|Settings|advanced|stuff|more
 	
 	
 	Gui,Tab,1
@@ -103,45 +104,46 @@ loadmainui(){
 	Gui, Add, Edit, gspeedsafety yp xp+105 number w40
 	Gui, Add, UpDown, vhaststatus Range10-50, %haststatus%
 	Gui, Font,s10,bold
-	if (tier = 1 || tier = 2 || tier = 3){
-		Gui, Tab,advanced
-		Gui, Add,checkbox,vshutdownserv x20 y40 %shutdowndata% %textcol%, shut down the server every
-		Gui, Add,Edit,vsrtime number xp+210 yp-5 w60,%shutdowntime%
-		Gui, Add,Text,%textcol% xp+65 yp+5, minutes
-		Gui, Add,checkbox,vssboard x20 yp+25 %textcol% %ssboarddata%,screenshot leaderboard at ///
-		Gui, Add,Text,yp xp+225 %textcol%,hour :
-		Gui, Add,DropDownlist,vlbsshour xp+45 yp w60 h200,%lbhourdata%||None|00|01|02|03|04|05|06|07|08|08|09|10|11|12|13|14|15|16|17|18|19|20|21|22|23
-		Gui, Add,Text,yp xp+70 %textcol%,/ minutes :
-		Gui, Add,DropDownlist,vlbssmin xp+75 yp w60 h200,%lbmindata%||None|00|10|20|30|40|50
-		Gui, Add,Text,%textcol% x20 yp+30,amount of square waves in bettertokenzigzag = 
-		Gui, Add,Edit,vsquarewaves number xp+330 yp-5 w50 ,%amountofsquarewaves%
-		Gui, Add,Button,w140 h30 x15 y200, customize farming
-		Gui, Add,Groupbox, xp+5 yp-85 w435 h75 %textcol%, kill vicious
-		Gui, Add,Checkbox, vkillvic xp+10 yp+25 %textcol% %killviccheck%,kill vicious bee when night is detected
-		Gui, Add,Text,%textcol% xp yp+25,stop fighting vic if it hasn't been killed after
-		Gui, Add,Edit,vfightvictime number xp+300 yp-5 w50,%fighttimedata%
-		Gui, Add,Text,%textcol% xp+55 yp+5,seconds
-	}
 	
-	if (tier = 1 || tier = 2 || tier = 3){
-		Gui, Tab,stuff
-		Gui,Add,Groupbox,x20 y30 w300 h90 %textcol%,ant
-		
-		Gui, Add, Checkbox, xp+5 yp+20 vantpasss %textcol% %antsetting%, claim free ant pass
-		Gui, Add, Checkbox, xp yp+20 vpantstatus %textcol% %antcheck%, use free pass to play ant
-		Gui, Add, Checkbox, xp yp+20 vwhenplayanttoggle %textcol% %buyplayant%, buy and use ant pass every
-		Gui, Add, DropDownlist, xp+215 yp vwhenplay w60 h200 ,%whenplayantdata%||30 min|1 hour|2 hours|4 hours
-		Gui, Add, Text, x20 yp+35 %textcol%,mondo kill type = 
-		Gui, Add, DropDownlist, xp+125 yp vmondokilltype w90 h200,%mondokilldata%||No Kill|Blessing|Loot
-		Gui, Add,Checkbox,vpineconvhive x20 yp+30 %textcol% %pineconvdata%,pinetree walk convert
-		
-		Gui, Add,Text, x200 yp+35 %textcol%,Events webhook
-		Gui, Add,Edit, w175 h20 x20 yp-5 ghook vhookevent , %hookevent%
-		Gui, Add,Text, x200 yp+35 %textcol%,Errors webhook
-		Gui, Add,Edit, w175 h20 x20 yp-5 ghook vhookerror , %hookerror%
-		Gui,Add,picture,x250 y145 ,Macro Parts/Images/hotbar.png
-		Gui, Add,Button,w140 h30 x330 y100,Load blue 5 nectar preset
-	}
+	Gui, Tab,advanced
+	Gui, Add,checkbox,vshutdownserv x20 y40 %shutdowndata% %textcol%, shut down the server every
+	Gui, Add,Edit,vsrtime number xp+210 yp-5 w60,%shutdowntime%
+	Gui, Add,Text,%textcol% xp+65 yp+5, minutes
+	Gui, Add,checkbox,vssboard x20 yp+25 %textcol% %ssboarddata%,screenshot leaderboard at ///
+	Gui, Add,Text,yp xp+225 %textcol%,hour :
+	Gui, Add,DropDownlist,vlbsshour xp+45 yp w60 h200,%lbhourdata%||None|00|01|02|03|04|05|06|07|08|08|09|10|11|12|13|14|15|16|17|18|19|20|21|22|23
+	Gui, Add,Text,yp xp+70 %textcol%,/ minutes :
+	Gui, Add,DropDownlist,vlbssmin xp+75 yp w60 h200,%lbmindata%||None|00|10|20|30|40|50
+	Gui, Add,Text,%textcol% x20 yp+30,amount of square waves in bettertokenzigzag = 
+	Gui, Add,Edit,vsquarewaves number xp+330 yp-5 w50 ,%amountofsquarewaves%
+	Gui, Add,Button,w140 h30 x15 y200, customize farming
+	Gui, Add,Groupbox, xp+5 yp-85 w435 h75 %textcol%, kill vicious
+	Gui, Add,Checkbox, vkillvic xp+10 yp+25 %textcol% %killviccheck%,kill vicious bee when night is detected
+	Gui, Add,Text,%textcol% xp yp+25,stop fighting vic if it hasn't been killed after
+	Gui, Add,Edit,vfightvictime number xp+300 yp-5 w50,%fighttimedata%
+	Gui, Add,Text,%textcol% xp+55 yp+5,seconds
+	
+	Gui, Tab,stuff
+	Gui,Add,Groupbox,x20 y30 w300 h90 %textcol%,ant
+	
+	Gui, Add, Checkbox, xp+5 yp+20 vantpasss %textcol% %antsetting%, claim free ant pass
+	Gui, Add, Checkbox, xp yp+20 vpantstatus %textcol% %antcheck%, use free pass to play ant
+	Gui, Add, Checkbox, xp yp+20 vwhenplayanttoggle %textcol% %buyplayant%, buy and use ant pass every
+	Gui, Add, DropDownlist, xp+215 yp vwhenplay w60 h200 ,%whenplayantdata%||30 min|1 hour|2 hours|4 hours
+	Gui, Add, Text, x20 yp+35 %textcol%,mondo kill type = 
+	Gui, Add, DropDownlist, xp+125 yp vmondokilltype w90 h200,%mondokilldata%||No Kill|Blessing|Loot
+	Gui, Add,Checkbox,vpineconvhive x20 yp+30 %textcol% %pineconvdata%,pinetree walk convert
+	
+	Gui, Add,Text, x200 yp+35 %textcol%,Events webhook
+	Gui, Add,Edit, w175 h20 x20 yp ghook vhookevent , %hookevent%
+	Gui, Add,Text, x200 yp+35 %textcol%,Errors webhook
+	Gui, Add,Edit, w175 h20 x20 yp ghook vhookerror , %hookerror%
+	Gui,Add,picture,x250 y145 ,Macro Parts/Images/hotbar.png
+	Gui, Add,Button,w140 h30 x330 y100,Load blue 5 nectar preset
+	
+	Gui, Tab,more
+	Gui, Add,Text, x200 y40 %textcol%,Balloon warnings webhook
+	Gui, Add,Edit, w175 h20 x20 yp ghook vhookballoon , %hookballoon%
 	
 	
 	;fix for issue where gui location data is sometimes corrupted

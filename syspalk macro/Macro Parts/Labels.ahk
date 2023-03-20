@@ -12,8 +12,10 @@
 	hook:
 	GuiControlget,hookerror
 	GuiControlget,hookevent
+	GuiControlget,hookballoon
 	IniWrite,%hookerror%,configs/privlinks.ini,webhooks,errors
 	IniWrite,%hookevent%,configs/privlinks.ini,webhooks,events
+	IniWrite,%hookballoon%,configs/privlinks.ini,webhooks,balloon
 	return
 	ButtonResetConfigFile:
 	Tooltip,Successfully reset configs!
@@ -82,6 +84,9 @@
 	return
 	activateroblox:
 	WinActivate, ahk_class WINDOWSCLIENT ahk_exe RobloxPlayerBeta.exe
+	if (convstatus != "None" && (A_TickCount - lastconv)/1000 > 1800){
+		balloonwarning()
+	}
 	return
 	F3::Pause
 	EventLog("Paused")
