@@ -124,6 +124,9 @@ timerchecks(){ ;function that checks all the timers and runs them
 			buyplayant()
 		}
 		checkplants("1 hour")
+		if (shrine){
+			shrine()
+		}
 		
 		if (wealthclock){
 			global convert := convert + 1

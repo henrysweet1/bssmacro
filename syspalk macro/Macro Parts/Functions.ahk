@@ -1126,3 +1126,27 @@ balloonwarning(){
 		WebRequest.Send(postdata) 
 	}
 }
+
+cubon(){
+	mousemove,140,140
+	Send {click}
+	sleep 100
+	mousemove,140,140
+	Send {click}
+	sleep 250
+	mousemove,250,140
+	Send {Click}
+	sleep 500
+	if (SearchFunction("cub.png",10)[1] = 0){
+		mousemove,SearchFunction("cub.png",10)[2],SearchFunction("cub.png",10)[3]
+		sleep 200
+		Send {Click}
+		sleep 500
+		if (SearchFunction("on.png",10)[1] = 0){
+			mousemove,SearchFunction("on.png",10)[2],SearchFunction("on.png",10)[3]
+			sleep 200
+			Send {Click}
+			sleep 500
+		}
+	}
+}

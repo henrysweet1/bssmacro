@@ -12,6 +12,12 @@ Tooltip,Loading...
 
 ;gui creation
 loadmainui()
+IniRead,firstlaunch,configs/previous.ini,gui,firstlaunch
+if (firstlaunch){
+	popup(300,200,"New in this version","1. Added new function which lets me easily create popups.`n2. Added a windshrine donation option in to the macro.`n3. I accidentaly deleted the text on the beesmas ui so it's back now.`n4. Added this feature which shows the new features of the version.")
+	IniWrite,0,configs/previous.ini,gui,firstlaunch
+}
+
 return
 
 ;start

@@ -225,6 +225,10 @@ global openedbeesmasui := false
 global keyboardtype 
 global hookballoon
 global lastconv := A_TickCount
+global shrine
+global donationamount
+global itemtodonate
+
 
 global tier := 1 ;give highest access
 
@@ -442,6 +446,14 @@ getdata(loadgui){
 	IniRead,hookevent,configs/privlinks.ini,webhooks,events
 	IniRead,hookerror,configs/privlinks.ini,webhooks,errors
 	IniRead,hookballoon,configs/privlinks.ini,webhooks,balloon
+	
+	IniRead,shrine,configs/previous.ini,advanced,shrineswitch
+	IniRead,donationamount,configs/previous.ini,advanced,amounttodonate
+	IniRead,itemtodonate,configs/previous.ini,advanced,donationitem
+	
+	if (shrine){
+		global shrine := "Checked"
+	}
 }
 
 savedata(){ ;this allows the macro to save data
@@ -506,6 +518,9 @@ savedata(){ ;this allows the macro to save data
 		GuiControlGet,whenplayanttoggle
 		GuiControlGet,whenplay
 		GuiControlGet,mondokilltype
+		GuiControlGet,shrine
+		GuiControlGet,donationamount
+		GuiControlGet,itemtodonate
 		Gui,1:+LastFound
 		WinGetPos,x,y
 		if (openedfarmui){
@@ -515,6 +530,9 @@ savedata(){ ;this allows the macro to save data
 			saveplantui()
 		}
 		savebeesmasui()
+		IniWrite,%shrine%,configs/previous.ini,advanced,shrineswitch
+		IniWrite,%donationamount%,configs/previous.ini,advanced,amounttodonate
+		IniWrite,%itemtodonate%,configs/previous.ini,advanced,donationitem
 		IniWrite,%lbsshour%,configs/previous.ini,advanced,lbhourdata
 		IniWrite,%lbssmin%,configs/previous.ini,advanced,lbmindata
 		IniWrite,%ssboard%,configs/previous.ini,advanced,ssboarddata
@@ -599,6 +617,10 @@ savedata(){ ;this allows the macro to save data
 
 Resetconfigfile(){ ;wipes the config file
 	global save := false
+	
+	IniWrite,0,configs/previous.ini,advanced,shrineswitch
+	IniWrite,2,configs/previous.ini,advanced,amounttodonate
+	IniWrite,None,configs/previous.ini,advanced,donationitem
 	
 	IniWrite,0,configs/previous.ini,beesmas,samovar
 	IniWrite,0,configs/previous.ini,beesmas,candles

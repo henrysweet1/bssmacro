@@ -1,10 +1,10 @@
 ﻿;gui creation
+global textcol := "cred"
 
 loadmainui(){
 	global start := A_TickCount
 	Gui, Font, s10 bold
 	Gui,Color,black
-	global textcol := "cred"
 	
 	Gui, Add, Tab, x1 y1 w500 h250 cred ,Main|Plants|Buffs|Settings|advanced|stuff|more
 	
@@ -145,6 +145,13 @@ loadmainui(){
 	Gui, Add,Text, x200 y40 %textcol%,Balloon warnings webhook
 	Gui, Add,Edit, w175 h20 x20 yp ghook vhookballoon , %hookballoon%
 	
+	Gui, Add,GroupBox,x20 yp+30 w300 h90 %textcol%,shrine
+	Gui, Add,Checkbox,vshrine x25 yp+25 %textcol% %shrine%,donate 
+	Gui, Add,Edit,vdonationamount number xp+70 yp w50 ,%donationamount%
+	Gui, Add,Text,xp+55 yp %textcol%,items to the windshrine
+	Gui, Add,Text,x25 yp+30 %textcol%,item =
+	Gui, Add,DropDownlist,vitemtodonate w100 h200 xp+50 yp,%itemtodonate%||None|Bitter|BlueBerry|BlueExt|Coconut|Enz|Glit|Glue|Gumdrop|Honeysuck|Oil|Pineap|RedExt|Straw|SunSeed|Ticket|Treat|Trop
+	
 	
 	;fix for issue where gui location data is sometimes corrupted
 	if (previousx > A_ScreenWidth){
@@ -162,7 +169,6 @@ loadmainui(){
 	global guiloaded := true
 	
 }
-
 
 loadplantui(){
 	global openedplantui := true
@@ -306,4 +312,12 @@ loadfarmui(){
 	Gui, farm:Add,Text, x20 yp+30 %textcol%,bettertokenzigzag ↑ / ↓ distance = 
 	Gui, farm:Add,Edit,vbty gsavefarmui x260 yp-5 w70,%bty%
 	Gui, farm:Show, w525 h230 x50 y290,custom farming options
+}
+
+popup(SizeX,SizeY,Title,Text){
+	Textloc := SizeX-20
+	Gui, popup:Destroy
+	Gui, popup:Font,s10,Segoe UI
+	Gui, popup:Add,Text, +wrap x10 y5 w%Textloc% ,%Text%
+	Gui, popup:Show, w%SizeX% h%SizeY%,%Title%
 }
