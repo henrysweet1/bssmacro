@@ -388,6 +388,7 @@ Reconnect(){ ;this code is disgusting but it works and I don't want to fix it.
 		WinClose, ahk_class WINDOWSCLIENT ahk_exe RobloxPlayerBeta.exe
 		IniRead,plink1,configs/privlinks.ini,xd,l1
 		IniRead,plink2,configs/privlinks.ini,xd,l2
+		WinClose, ahk_exe chrome.exe
 		sleep 1000
 		if (plink1 && serverjoinstatus){
 			run, %plink1%
@@ -1127,14 +1128,12 @@ balloonwarning(){
 	}
 }
 
-cubon(){
-	mousemove,140,140
-	Send {click}
-	sleep 100
-	mousemove,140,140
-	Send {click}
-	sleep 250
-	mousemove,250,140
+cub(searchfor){
+	loop 2{
+		mousemove,140,125
+		Send {click}
+	}
+	mousemove,250,125
 	Send {Click}
 	sleep 500
 	if (SearchFunction("cub.png",10)[1] = 0){
@@ -1142,8 +1141,8 @@ cubon(){
 		sleep 200
 		Send {Click}
 		sleep 500
-		if (SearchFunction("on.png",10)[1] = 0){
-			mousemove,SearchFunction("on.png",10)[2],SearchFunction("on.png",10)[3]
+		if (SearchFunction(searchfor,10)[1] = 0){
+			mousemove,SearchFunction(searchfor,10)[2],SearchFunction(searchfor,10)[3]
 			sleep 200
 			Send {Click}
 			sleep 500

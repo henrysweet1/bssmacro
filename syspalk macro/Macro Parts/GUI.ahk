@@ -90,7 +90,7 @@ loadmainui(){
 	Gui, Add,GroupBox,x260 y30 w225 h210 %textcol%, extra space
 	Gui, Add,Text, xp+10 yp+20 %textcol%, max time on field (minutes)
 	Gui, Add, Edit, gnumberonfieldsafety yp-5 xp+160 number w40
-	Gui, Add, UpDown, vmaxtimespentonfield Range1-30, %maxtimespentonfield%
+	Gui, Add, UpDown, vmaxtimespentonfield Range1-60, %maxtimespentonfield%
 	Gui, add, Text, x270 yp+35 %textcol%, keyboard type : 
 	Gui, Font,s10,bold
 	Gui, Add, DropDownList, xp+100 yp-5 w100 h90 gupdatekeyboard vkeyboard,%keyboardtypeee%||qwerty|azerty|qwertz

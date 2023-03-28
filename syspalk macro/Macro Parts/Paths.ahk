@@ -1536,7 +1536,7 @@ gluedisp(){
 		}
 		sleep 500
 		if not (SearchFunction("ticket.png","10")[1] = 0){
-			mousemove,40,140
+			mousemove,40,125
 			sleep 100
 			Send {Click Left}
 			mousemove,40,200
@@ -1555,7 +1555,7 @@ gluedisp(){
 				sleep 250
 				Send {WheelDown}
 			}
-			mousemove,40,140
+			mousemove,40,125
 			sleep 100
 			Send {Click Left}
 			return
@@ -1575,7 +1575,7 @@ gluedisp(){
 				mousemove,A_ScreenWidth/2,A_ScreenHeight/2
 				sleep 250
 				Send {Click Left Up}
-				mousemove,40,140
+				mousemove,40,125
 				sleep 100
 				Send {Click Left}
 				
@@ -1831,27 +1831,7 @@ shrine(){
 	savedata()
 	donationitem := "Shrine" . itemtodonate . ".png"
 	clicks := donationamount - 1
-	mousemove,140,140
-	Send {click}
-	sleep 100
-	mousemove,140,140
-	Send {click}
-	sleep 250
-	mousemove,250,140
-	Send {Click}
-	sleep 500
-	if (SearchFunction("cub.png",10)[1] = 0){
-		mousemove,SearchFunction("cub.png",10)[2],SearchFunction("cub.png",10)[3]
-		sleep 200
-		Send {Click}
-		sleep 500
-		if (SearchFunction("off.png",10)[1] = 0){
-			mousemove,SearchFunction("off.png",10)[2],SearchFunction("off.png",10)[3]
-			sleep 200
-			Send {Click}
-			sleep 500
-		}
-	}
+	cub("off.png")
 	
 	r(true)
 	Reset()
@@ -1926,7 +1906,7 @@ shrine(){
 		if (A_TickCount - breaktime > 10000){
 			ErrorLog("Failed to do shrine /// Cause : Failed to arrive at donation pad")
 			Reconnect()
-			cubon()
+			cub("on.png")
 			return
 		}
 	}
@@ -1938,9 +1918,9 @@ shrine(){
 	Send {Click Left}
 	maxshrinetrytime := A_TickCount
 	while (1){
-		sleep 500
+		sleep 250
 		if (SearchFunction(donationitem,10)[1] = 0){
-			sleep 2500
+			sleep 1000
 			if (SearchFunction(donationitem,10)[1] = 0){
 				sleep 500
 				mousemove,SearchFunction("ShrineAdd.png",10)[2],SearchFunction("ShrineAdd.png",10)[3]
@@ -1959,7 +1939,7 @@ shrine(){
 		if (A_TickCount - maxshrinetrytime > 60000){
 			ErrorLog("Failed to do shrine /// Cause : Failed to find donation item")
 			Reconnect()
-			cubon()
+			cub("on.png")
 			return
 		}
 	}
@@ -1974,7 +1954,7 @@ shrine(){
 		if (A_TickCount - maxdonatebuttonsearchtime > 5000){
 			Errorlog("Failed to do shrine /// cause : Failed to find donate button")
 			Reconnect()
-			cubon()
+			cub("on.png")
 			return
 		}
 	}
@@ -1988,17 +1968,12 @@ shrine(){
 	sleep 2500
 	walk(500,"f")
 	walk(1000,"l")
-	walk(2000,"r")
-	walk(250,"b")
-	walk(2000,"l")
-	walk(250,"b")
-	walk(2000,"r")
-	walk(250,"b")
-	walk(2000,"l")
-	walk(250,"b")
-	walk(2000,"r")
-	walk(250,"b")
-	walk(2000,"l")
-	cubon()
+	loop 4{
+		walk(2000,"r")
+		walk(250,"b")
+		walk(2000,"l")
+		walk(250,"b")
+	}
+	cub("on.png")
 	EventLog("Succesfully donated to shrine")
 }

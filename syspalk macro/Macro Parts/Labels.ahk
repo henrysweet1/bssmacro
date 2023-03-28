@@ -28,8 +28,8 @@
 	return
 	numberonfieldsafety:
 	GuiControlGet,maxtimespentonfield
-	if(maxtimespentonfield > 30){
-		maxtimespentonfield := 30
+	if(maxtimespentonfield > 60){
+		maxtimespentonfield := 60
 	}
 	if(maxtimespentonfield < 1){
 		maxtimespentonfield := 1
