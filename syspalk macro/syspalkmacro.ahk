@@ -14,7 +14,7 @@ Tooltip,Loading...
 loadmainui()
 IniRead,firstlaunch,configs/previous.ini,gui,firstlaunch
 if (firstlaunch){
-	popup(500,180,"New in this version","1. Reconnect will now close chrome every single time it attempts to reconnect.`n2. Changed maximum time on field to 60 minutes instead of 30.`n3. Changed clicking position to open the inventory so the glue dispenser now works when you're macroing with/without fullscreen enabled [the same goes for toggling the cub buddy for the shrine]`n4. Changed shrine image to fix possible issues.`n5. Made the process of going through the shrine donation options a little bit faster.")
+	popup(500,120,"New in this version","1. Changed the update checker to fix an issue where it would sometimes break if it failed to check the newest version.`n2. Changed the walktocannon() function.`n3. Added a feature which detects when the macro is next to the ledge of the cannon so it will waste less time standing at that ledge.")
 	IniWrite,0,configs/previous.ini,gui,firstlaunch
 }
 

@@ -346,23 +346,30 @@ walktocannon(){ ;makes the character walk to the cannon.
 	sleep 100
 	walk(1000,"f") 
 	send {d down}
-	sleep 6500
+	loop 55{
+		if (SearchFunction("cannon.png",10)[1] = 0){
+			break
+		}
+		sleep 100
+	}
+	sleep 750
 	sendSpace()
 	sleep 400
 	send {d up}
 	WinGetPos , windowX, windowY, windowWidth, windowY, Roblox
 	WindowY := windowY/3
 	btimer := A_Tickcount
+	walkhold("r","Down")
 	loop{
 		ImageSearch,foundx,foundy,0,0,A_ScreenWidth,windowY,*10 Macro Parts/images/e.png 
 		if (errorlevel = 0){
+			walkhold("r","Up")
 			break
-		}else{
-			walk(50,"r")
 		}
 		if (A_Tickcount - btimer > 5000){
 			if (attempts > 2){
 				ErrorLog("Reconnected (Cause : E button for cannon wasn't detected after too many tries)")
+				walkhold("r","Up")
 				Reconnect()
 				if (tier = 1){
 					GuiControlGet,pineconvhive
@@ -373,6 +380,7 @@ walktocannon(){ ;makes the character walk to the cannon.
 				global reconnectedcannon := true
 				return
 			}else{
+				walkhold("r","Up")
 				goto,cannonstart
 			}
 		}
