@@ -228,7 +228,7 @@ global lastconv := A_TickCount
 global shrine
 global donationamount
 global itemtodonate
-
+global lastvickill := 0
 
 global tier := 1 ;give highest access
 

@@ -1,0 +1,11 @@
+1. Slightly the changed pinetree walk convert.
+
+2. Changed the clover camera rotation to increase reliability.
+
+3. Slightly changed the strawberry farming position.
+
+4. Killed some useless delay when starting the macro.
+
+5. Fixed an Issue with the stingerrun where it could run twice in a row if the macro completed it too fast.
+
+6. Changed the new in this version popup.

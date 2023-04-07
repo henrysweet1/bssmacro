@@ -314,10 +314,11 @@ loadfarmui(){
 	Gui, farm:Show, w525 h230 x50 y290,custom farming options
 }
 
-popup(SizeX,SizeY,Title,Text){
+popup(SizeX,SizeY,FontSize,Title,Text){
 	Textloc := SizeX-20
 	Gui, popup:Destroy
-	Gui, popup:Font,s10,Segoe UI
-	Gui, popup:Add,Text, +wrap x10 y5 w%Textloc% ,%Text%
+	Gui, popup:color,0x2A2F32
+	Gui, popup:Font,s%FontSize%,Segoe UI
+	Gui, popup:Add,Text, +wrap x10 y5 w%Textloc% cwhite,%Text%
 	Gui, popup:Show, w%SizeX% h%SizeY%,%Title%
 }

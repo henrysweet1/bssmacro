@@ -206,8 +206,8 @@ straw(nectar){
 		walk(100,"l")
 	}
 	else{
-		walk(750,"b")
-		walk(750,"l")
+		walk(1000,"b")
+		walk(1000,"l")
 	}
 }
 
@@ -574,7 +574,11 @@ clover(nectar){
 	SendSpace()
 	sleep 750
 	walk(500,"f")
+	camrotate(2,"r")
+	SendInput {PGUP}
 	if(nectar){
+		SendInput {PGDN}
+		camrotate(2,"l")
 		walk(5000,"r")
 		Send {Shift}
 		sleep 100
@@ -1737,9 +1741,14 @@ pinewalktohive(){
 	Send {Shift}
 	walk(2000,"f")
 	walk(390,"b")
-	loop 16{
-		if (SearchFunction("e.png","10")[1] = 0){
-			
+	starttimer := A_TickCount
+	walkhold("l","Down")
+	WinGetPos , windowX, windowY, windowWidth, windowY, Roblox
+	WindowY := windowY/3
+	while (1){
+		ImageSearch,FoundX,FoundY,0,0,A_ScreenWidth,WindowY,*10 Macro Parts/images/e.png 
+		if (errorlevel = 0){
+			walkhold("l","Up")
 			Send ooooooooo
 			loopbreak := A_TickCount
 			if (convert < 2){
@@ -1761,14 +1770,19 @@ pinewalktohive(){
 			}
 			walk(750,"f")
 			global convertedd := true
+			walkhold("l","Up")
 			return
-		}else{
-			walk(50,"l")
+		}else if (A_TickCount - starttimer > 1000){
+			walkhold("l","Up")
+			break
 		}
 	}
-	loop 80{
-		if (SearchFunction("e.png","10")[1] = 0){
-			
+	starttimer := A_TickCount
+	walkhold("r","Down")
+	while (1){
+		ImageSearch,FoundX,FoundY,0,0,A_ScreenWidth,WindowY,*10 Macro Parts/images/e.png 
+		if (errorlevel = 0){
+			walkhold("r","Up")
 			Send ooooooooo
 			loopbreak := A_TickCount
 			if (convert < 2){
@@ -1790,9 +1804,11 @@ pinewalktohive(){
 			}
 			walk(750,"f")
 			global convertedd := true
+			walkhold("r","Up")
 			return
-		}else{
-			walk(50,"r")
+		}else if (A_TickCount - starttimer > 4000){
+			walkhold("r","Up")
+			break
 		}
 	}
 	Errorlog("Couldn't find E button to convert at hive")

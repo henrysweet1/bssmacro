@@ -14,7 +14,8 @@ Tooltip,Loading...
 loadmainui()
 IniRead,firstlaunch,configs/previous.ini,gui,firstlaunch
 if (firstlaunch){
-	popup(500,120,"New in this version","1. Changed the update checker to fix an issue where it would sometimes break if it failed to check the newest version.`n2. Changed the walktocannon() function.`n3. Added a feature which detects when the macro is next to the ledge of the cannon so it will waste less time standing at that ledge.")
+	fileread,newstuff,configs/new in this version.txt
+	popup(500,230,10,"New in this version",newstuff)
 	IniWrite,0,configs/previous.ini,gui,firstlaunch
 }
 
@@ -33,7 +34,6 @@ WinActivate, ahk_class WINDOWSCLIENT ahk_exe RobloxPlayerBeta.exe ;activate robl
 while(1){
 	start:
 	savedata() ;updates all the variables and saves the whole gui
-	sleep 250
 	Tooltip,
 	safetycheck()
 	if(reconnected = true){

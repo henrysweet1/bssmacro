@@ -354,11 +354,12 @@ walktocannon(){ ;makes the character walk to the cannon.
 	}
 	sleep 750
 	sendSpace()
-	sleep 400
+	sleep 300
 	send {d up}
 	WinGetPos , windowX, windowY, windowWidth, windowY, Roblox
 	WindowY := windowY/3
 	btimer := A_Tickcount
+	sleep 300
 	walkhold("r","Down")
 	loop{
 		ImageSearch,foundx,foundy,0,0,A_ScreenWidth,windowY,*10 Macro Parts/images/e.png 
@@ -884,7 +885,7 @@ fightcheck(){ ;checks if a vicious bee is present.
 		sleep 259
 		camrotate(1,"l")
 	}
-	if (SearchFunction("vicattacking.png",20)[1] = 0 || SearchFunction("vicattacking1.png",20)[1] = 0){
+	if (SearchFunction("vicattacking.png",40)[1] = 0 || SearchFunction("vicattacking1.png",40)[1] = 0){
 		sex := true
 		starty := A_TickCount
 		if (vicfield = "mountain"){
@@ -918,6 +919,9 @@ fightcheck(){ ;checks if a vicious bee is present.
 }
 
 viccheck(changecam){ ;check for nighttime.
+	if (A_Tickcount - lastvickill < 360000){
+		return
+	}
 	savedata()
 	if (changecam){
 		Send iiiiiiii
@@ -935,6 +939,7 @@ viccheck(changecam){ ;check for nighttime.
 	ImageSearch,Ox,OY,0,0,A_ScreenWidth,150, Macro Parts/images/night.png
 	if (ErrorLevel = 0 && killvic = true){
 		global convert := 1000
+		global lastvickill := A_Tickcount
 		stingerrun()
 		global convert := 0
 		didvicrun := true
